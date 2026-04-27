@@ -24,11 +24,19 @@
 
 body {
   font-family: var(--font-family);
-  background-color: var(--bg-color);
+  background: linear-gradient(-45deg, var(--bg-color), var(--sage-lighter), #ffffff, var(--sage-lighter));
+  background-size: 400% 400%;
+  animation: soothing-gradient 24s ease-in-out infinite;
   color: var(--text-primary);
   height: 100vh;
   overflow: hidden;
   position: relative;
+}
+
+@keyframes soothing-gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 /* Base App Layout */
