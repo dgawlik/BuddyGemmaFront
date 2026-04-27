@@ -148,15 +148,10 @@ function App() {
   return (
     <>
       <audio ref={audioRef} src="/forest-ambience-light-birdsong-distant-rooster-vincentmets-1-03-38.mp3" loop />
-      <div className="bg-animation">
-        <div className="orb orb-1"></div>
-        <div className="orb orb-2"></div>
-        <div className="orb orb-3"></div>
-      </div>
 
       <div className="app-container">
         {/* Sidebar */}
-        <aside className="sidebar glass-panel">
+        <aside className="sidebar card-panel">
           <div className="sidebar-header">
             <div className="flex items-center" style={{ gap: '0.5rem' }}>
               <img src="/logo.png" alt="BuddyGemma Logo" className="app-logo" />
@@ -201,7 +196,7 @@ function App() {
         </aside>
 
         {/* Main Chat Area */}
-        <main className="main-chat glass-panel">
+        <main className="main-chat card-panel">
           {activeSession ? (
             <>
               <div className="chat-header">
@@ -265,7 +260,7 @@ function App() {
       {/* Settings Modal */}
       {isSettingsOpen && (
         <div className="modal-overlay">
-          <div className="settings-modal glass-panel">
+          <div className="settings-modal card-panel">
             <h2>Settings</h2>
 
             <div className="form-group">

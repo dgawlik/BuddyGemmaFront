@@ -2,19 +2,18 @@
 
 :root {
   --font-family: 'Inter', sans-serif;
-  --bg-color: #f7f9f7; /* Very warm off-white */
-  --text-primary: #2d3748;
-  --text-secondary: #718096;
+  --bg-color: #f3f5f4;
+  --text-primary: #1e293b;
+  --text-secondary: #475569;
   
-  /* CBT Palette */
-  --sage-green: #90b494;
-  --sage-light: #c1d3c4;
-  --soft-blue: #a3bdeb;
-  --warm-peach: #f9d8c4;
+  /* Premium Palette */
+  --sage-green: #52796f;
+  --sage-light: #cad2c5;
+  --sage-lighter: #e8ede9;
   
-  --glass-bg: rgba(255, 255, 255, 0.7);
-  --glass-border: rgba(255, 255, 255, 0.5);
-  --glass-shadow: 0 8px 32px 0 rgba(144, 180, 148, 0.15);
+  --card-bg: #ffffff;
+  --card-border: #e2e8f0;
+  --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
 }
 
 * {
@@ -32,63 +31,6 @@ body {
   position: relative;
 }
 
-/* Background Animation */
-.bg-animation {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: -1;
-  overflow: hidden;
-  background: linear-gradient(135deg, #f7f9f7 0%, #e2ece4 100%);
-}
-
-.orb {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.6;
-  animation: float 20s infinite ease-in-out alternate;
-}
-
-.orb-1 {
-  width: 60vw;
-  height: 60vw;
-  background: var(--sage-light);
-  top: -10vw;
-  left: -10vw;
-  animation-delay: 0s;
-}
-
-.orb-2 {
-  width: 50vw;
-  height: 50vw;
-  background: var(--soft-blue);
-  bottom: -10vw;
-  right: -5vw;
-  animation-duration: 25s;
-  animation-delay: -5s;
-}
-
-.orb-3 {
-  width: 40vw;
-  height: 40vw;
-  background: var(--warm-peach);
-  top: 40vh;
-  left: 20vw;
-  animation-duration: 30s;
-  animation-delay: -10s;
-  opacity: 0.4;
-}
-
-@keyframes float {
-  0% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(5vw, 5vh) scale(1.05); }
-  66% { transform: translate(-2vw, 8vh) scale(0.95); }
-  100% { transform: translate(-5vw, -2vh) scale(1); }
-}
-
 /* Base App Layout */
 #root {
   display: flex;
@@ -96,12 +38,10 @@ body {
   width: 100vw;
 }
 
-.glass-panel {
-  background: var(--glass-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--glass-border);
-  box-shadow: var(--glass-shadow);
+.card-panel {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--card-shadow);
 }
 
 /* Utility classes */
@@ -128,7 +68,7 @@ body {
 }
 
 .btn:hover {
-  background: #7ca380;
+  background: #42635a;
   transform: translateY(-1px);
 }
 
@@ -150,12 +90,12 @@ body {
 
 input, textarea {
   font-family: inherit;
-  border: 1px solid rgba(0,0,0,0.1);
+  border: 1px solid var(--card-border);
   border-radius: 0.5rem;
   padding: 0.75rem;
-  background: rgba(255,255,255,0.8);
+  background: #f8fafc;
   outline: none;
-  transition: border-color 0.2s;
+  transition: all 0.2s ease;
 }
 
 input:focus, textarea:focus {
