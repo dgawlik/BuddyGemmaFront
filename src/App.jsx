@@ -154,8 +154,7 @@ function App() {
         <aside className="sidebar card-panel">
           <div className="sidebar-header">
             <div className="flex items-center" style={{ gap: '0.5rem' }}>
-              <img src="/logo.png" alt="BuddyGemma Logo" className="app-logo" />
-              <h1>Buddy<br></br>Gemma</h1>
+              <img width="100" height="100" src="/logo.png" alt="BuddyGemma Logo" className="app-logo" />
             </div>
             <div className="flex items-center" style={{ gap: '0.5rem' }}>
               <button className="btn-icon" onClick={toggleMusic} title={isMusicPlaying ? "Mute Music" : "Play Relaxing Music"}>
