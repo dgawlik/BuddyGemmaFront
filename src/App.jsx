@@ -31,7 +31,7 @@ function useLocalStorage(key, initialValue) {
   return [storedValue, setValue];
 }
 
-const SYSTEM_PROMPT = "You are professional psycholanalyst trying to help the patient. Write messages in approx. 600 tokens";
+const SYSTEM_PROMPT = "You are professional psycholanalyst trying to help the patient.";
 
 function App() {
   const [settings, setSettings] = useLocalStorage('cbt_settings', {
