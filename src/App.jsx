@@ -120,7 +120,7 @@ function App() {
           { role: 'system', content: SYSTEM_PROMPT },
           ...updatedMessages.map(m => ({ role: m.role, content: m.content }))
         ],
-        chat_template_kwargs: { "enable_thinking": true }
+        reasoning_effort: "high"
       });
 
       const assistantMessage = response.choices[0].message;
