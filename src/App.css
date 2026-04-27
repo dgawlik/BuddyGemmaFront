@@ -296,3 +296,7 @@
   object-fit: cover;
   opacity: 0.9;
 }
+.thinking-process { margin-bottom: 1rem; background: var(--sage-lighter); border-radius: 0.5rem; padding: 0.75rem; font-size: 0.85rem; color: var(--text-secondary); }
+.thinking-process summary { cursor: pointer; font-weight: 500; outline: none; user-select: none; }
+.thinking-content { margin-top: 0.5rem; padding-top: 0.5rem; border-top: 1px solid rgba(0,0,0,0.05); font-style: italic; max-height: 200px; overflow-y: auto; }
+

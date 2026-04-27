@@ -119,7 +119,8 @@ function App() {
         messages: [
           { role: 'system', content: SYSTEM_PROMPT },
           ...updatedMessages.map(m => ({ role: m.role, content: m.content }))
-        ]
+        ],
+        chat_template_kwargs: { "enable_thinking": true }
       });
 
       const assistantMessage = response.choices[0].message;
@@ -210,13 +211,36 @@ function App() {
                     <p style={{ marginTop: '0.5rem' }}>How are you feeling today?</p>
                   </div>
                 ) : (
-                  activeSession.messages.map((msg, idx) => (
-                    <div key={idx} className={`message ${msg.role}`}>
-                      {msg.content.split('\n').map((line, i) => (
-                        <p key={i} style={{ minHeight: '1rem' }}>{line}</p>
-                      ))}
-                    </div>
-                  ))
+                  activeSession.messages.map((msg, idx) => {
+                    let thinking = msg.reasoning_content || '';
+                    let content = msg.content || '';
+
+                    if (!thinking && content.includes('<think>')) {
+                      const match = content.match(/<think>([\s\S]*?)<\/think>/);
+                      if (match) {
+                        thinking = match[1].trim();
+                        content = content.replace(/<think>[\s\S]*?<\/think>/, '').trim();
+                      }
+                    }
+
+                    return (
+                      <div key={idx} className={`message ${msg.role}`}>
+                        {thinking && (
+                          <details className="thinking-process">
+                            <summary>View Thinking Process</summary>
+                            <div className="thinking-content">
+                              {thinking.split('\n').map((line, i) => (
+                                <p key={i} style={{ minHeight: '1rem' }}>{line}</p>
+                              ))}
+                            </div>
+                          </details>
+                        )}
+                        {content.split('\n').map((line, i) => (
+                          <p key={i} style={{ minHeight: '1rem' }}>{line}</p>
+                        ))}
+                      </div>
+                    );
+                  })
                 )}
                 {isLoading && (
                   <div className="typing-indicator">
