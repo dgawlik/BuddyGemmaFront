@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Settings, Plus, Send, MessageSquare, Brain, Volume2, VolumeX } from 'lucide-react';
 import { v4 as uuidv4 } from 'uuid';
 import OpenAI from 'openai';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import './App.css';
 
 // Custom hook for local storage
@@ -229,15 +231,15 @@ function App() {
                           <details className="thinking-process">
                             <summary>View Thinking Process</summary>
                             <div className="thinking-content">
-                              {thinking.split('\n').map((line, i) => (
-                                <p key={i} style={{ minHeight: '1rem' }}>{line}</p>
-                              ))}
+                              <ReactMarkdown remarkPlugins={[remarkGfm]} className="markdown-content">
+                                {thinking}
+                              </ReactMarkdown>
                             </div>
                           </details>
                         )}
-                        {content.split('\n').map((line, i) => (
-                          <p key={i} style={{ minHeight: '1rem' }}>{line}</p>
-                        ))}
+                        <ReactMarkdown remarkPlugins={[remarkGfm]} className="markdown-content">
+                          {content}
+                        </ReactMarkdown>
                       </div>
                     );
                   })
