@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Settings, Plus, Send, MessageSquare, Brain, Volume2, VolumeX } from 'lucide-react';
+import { Settings, Plus, Send, MessageSquare, Brain, Volume2, VolumeX, Menu, X } from 'lucide-react';
 import { v4 as uuidv4 } from 'uuid';
 import OpenAI from 'openai';
 import ReactMarkdown from 'react-markdown';
@@ -44,6 +44,7 @@ function App() {
   const [activeSessionId, setActiveSessionId] = useLocalStorage('cbt_active_session', null);
 
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [isMusicPlaying, setIsMusicPlaying] = useState(false);
@@ -149,8 +150,13 @@ function App() {
       <audio ref={audioRef} src="/forest-ambience-light-birdsong-distant-rooster-vincentmets-1-03-38.mp3" loop />
 
       <div className="app-container">
+        {/* Sidebar Overlay */}
+        {isSidebarOpen && (
+          <div className="sidebar-overlay" onClick={() => setIsSidebarOpen(false)}></div>
+        )}
+
         {/* Sidebar */}
-        <aside className="sidebar card-panel">
+        <aside className={`sidebar card-panel ${isSidebarOpen ? 'open' : ''}`}>
           <div className="sidebar-header">
             <div className="flex items-center" style={{ gap: '0.5rem' }}>
               <img src="/logo.png" alt="BuddyGemma Logo" className="app-logo" />
@@ -162,11 +168,14 @@ function App() {
               <button className="btn-icon" onClick={() => setIsSettingsOpen(true)} title="Settings">
                 <Settings size={20} />
               </button>
+              <button className="btn-icon mobile-close-btn" onClick={() => setIsSidebarOpen(false)}>
+                <X size={20} />
+              </button>
             </div>
           </div>
 
           <div className="flex p-4" style={{ padding: '1rem' }}>
-            <button className="btn w-full justify-center" onClick={createNewSession} style={{ width: '100%' }}>
+            <button className="btn w-full justify-center" onClick={() => { createNewSession(); setIsSidebarOpen(false); }} style={{ width: '100%' }}>
               <Plus size={18} /> New Session
             </button>
           </div>
@@ -176,7 +185,7 @@ function App() {
               <div
                 key={session.id}
                 className={`session-item ${session.id === activeSessionId ? 'active' : ''}`}
-                onClick={() => setActiveSessionId(session.id)}
+                onClick={() => { setActiveSessionId(session.id); setIsSidebarOpen(false); }}
               >
                 <div className="flex items-center" style={{ gap: '0.5rem' }}>
                   <MessageSquare size={16} color="var(--text-secondary)" />
@@ -198,7 +207,12 @@ function App() {
           {activeSession ? (
             <>
               <div className="chat-header">
-                <h2>{activeSession.title}</h2>
+                <div className="flex items-center" style={{ gap: '0.5rem' }}>
+                  <button className="btn-icon mobile-menu-btn" onClick={() => setIsSidebarOpen(true)}>
+                    <Menu size={20} />
+                  </button>
+                  <h2>{activeSession.title}</h2>
+                </div>
               </div>
 
               <div className="messages-container">
@@ -264,16 +278,23 @@ function App() {
               </div>
             </>
           ) : (
-            <div className="empty-state">
-              <img src="/logo.png" alt="BuddyGemma Logo" className="app-logo-large" style={{ marginBottom: '1.5rem' }} />
-              <h2>Start a New Session</h2>
-              <p style={{ marginTop: '1rem', maxWidth: '300px' }}>
-                Select a session from the sidebar or start a new one to begin chatting with your psychoanalyst.
-              </p>
-              <button className="btn" onClick={createNewSession} style={{ marginTop: '2rem' }}>
-                <Plus size={18} /> New Session
-              </button>
-            </div>
+            <>
+              <div className="mobile-only-header">
+                <button className="btn-icon mobile-menu-btn" onClick={() => setIsSidebarOpen(true)}>
+                  <Menu size={20} />
+                </button>
+              </div>
+              <div className="empty-state">
+                <img src="/logo.png" alt="BuddyGemma Logo" className="app-logo-large" style={{ marginBottom: '1.5rem' }} />
+                <h2>Start a New Session</h2>
+                <p style={{ marginTop: '1rem', maxWidth: '300px' }}>
+                  Select a session from the sidebar or start a new one to begin chatting with your psychoanalyst.
+                </p>
+                <button className="btn" onClick={() => { createNewSession(); setIsSidebarOpen(false); }} style={{ marginTop: '2rem' }}>
+                  <Plus size={18} /> New Session
+                </button>
+              </div>
+            </>
           )}
         </main>
       </div>

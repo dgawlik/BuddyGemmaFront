@@ -359,3 +359,88 @@
   border-color: rgba(255, 255, 255, 0.2);
 }
 
+/* Mobile Responsiveness */
+.mobile-menu-btn, .mobile-close-btn {
+  display: none;
+}
+
+.mobile-only-header {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .app-container {
+    padding: 0;
+    gap: 0;
+  }
+
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    bottom: 0;
+    width: 85%;
+    max-width: 320px;
+    z-index: 100;
+    border-radius: 0;
+    transition: left 0.3s ease;
+    background: var(--card-bg);
+  }
+
+  .sidebar.open {
+    left: 0;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.2);
+  }
+
+  .sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(15, 23, 42, 0.6);
+    z-index: 90;
+  }
+
+  .main-chat {
+    border-radius: 0;
+    width: 100%;
+  }
+
+  .mobile-menu-btn, .mobile-close-btn {
+    display: flex;
+  }
+
+  .mobile-only-header {
+    display: flex;
+    padding: 1rem 1.5rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+  }
+  
+  .chat-header {
+    padding: 1rem 1.5rem;
+  }
+
+  .message {
+    max-width: 90%;
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .chat-input-area {
+    padding: 1rem;
+  }
+  
+  .settings-modal {
+    width: 90%;
+    max-width: 400px;
+  }
+
+  .empty-state {
+    padding-top: 4rem; /* To clear the absolute header */
+  }
+}
+
