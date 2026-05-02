@@ -47,6 +47,7 @@ function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [isDeploying, setIsDeploying] = useState(false);
   const [isMusicPlaying, setIsMusicPlaying] = useState(false);
 
   const messagesEndRef = useRef(null);
@@ -70,6 +71,19 @@ function App() {
   useEffect(() => {
     scrollToBottom();
   }, [activeSession?.messages, isLoading]);
+
+  useEffect(() => {
+    let deployTimer;
+    if (isLoading) {
+      setIsDeploying(false);
+      deployTimer = setTimeout(() => {
+        setIsDeploying(true);
+      }, 10000);
+    } else {
+      setIsDeploying(false);
+    }
+    return () => clearTimeout(deployTimer);
+  }, [isLoading]);
 
   const createNewSession = () => {
     const newSession = {
@@ -255,10 +269,13 @@ function App() {
                   })
                 )}
                 {isLoading && (
-                  <div className="typing-indicator">
-                    <div className="typing-dot"></div>
-                    <div className="typing-dot"></div>
-                    <div className="typing-dot"></div>
+                  <div className="typing-indicator" style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
+                    <div className="flex" style={{ gap: '0.3rem' }}>
+                      <div className="typing-dot"></div>
+                      <div className="typing-dot"></div>
+                      <div className="typing-dot"></div>
+                    </div>
+                    {isDeploying && <span style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', animation: 'fadeIn 0.3s ease' }}>Deploying model: est 5 min...</span>}
                   </div>
                 )}
                 <div ref={messagesEndRef} />
