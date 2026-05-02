@@ -28,7 +28,7 @@ body {
   background-size: 400% 400%;
   animation: soothing-gradient 24s ease-in-out infinite;
   color: var(--text-primary);
-  height: 100vh;
+  height: 100dvh;
   overflow: hidden;
   position: relative;
 }
@@ -50,7 +50,7 @@ body {
 /* Base App Layout */
 #root {
   display: flex;
-  height: 100vh;
+  height: 100dvh;
   width: 100vw;
 }
 
