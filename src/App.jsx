@@ -37,8 +37,7 @@ const SYSTEM_PROMPT = "You are professional psycholanalyst trying to help the pa
 
 function App() {
   const [settings, setSettings] = useLocalStorage('cbt_settings', {
-    apiKey: '',
-    endpoint: 'https://api.openai.com/v1'
+    apiKey: ''
   });
 
   const [sessions, setSessions] = useLocalStorage('cbt_sessions', []);
@@ -84,8 +83,8 @@ function App() {
 
   const handleSend = async () => {
     if (!input.trim() || !activeSessionId) return;
-    if (!settings.apiKey || !settings.endpoint) {
-      alert("Please configure your API Key and Endpoint in Settings.");
+    if (!settings.apiKey) {
+      alert("Please configure your API Key in Settings.");
       setIsSettingsOpen(true);
       return;
     }
@@ -105,10 +104,7 @@ function App() {
     setIsLoading(true);
 
     try {
-      let baseURL = settings.endpoint || 'https://api.openai.com/v1';
-      if (baseURL.endsWith('/v1/chat/completions')) {
-        baseURL = baseURL.replace('/v1/chat/completions', '/v1');
-      }
+      let baseURL = 'https://dominik-gawlik1--dgawlik-buddy-gemma-v2-serve.modal.run/v1';
 
       const openai = new OpenAI({
         apiKey: settings.apiKey,
@@ -287,16 +283,6 @@ function App() {
         <div className="modal-overlay">
           <div className="settings-modal card-panel">
             <h2>Settings</h2>
-
-            <div className="form-group">
-              <label>API Base URL</label>
-              <input
-                type="text"
-                value={settings.endpoint}
-                onChange={(e) => setSettings({ ...settings, endpoint: e.target.value })}
-                placeholder="https://api.openai.com/v1"
-              />
-            </div>
 
             <div className="form-group">
               <label>API Key</label>
