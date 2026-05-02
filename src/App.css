@@ -283,8 +283,8 @@
 }
 
 .app-logo {
-  width: 170px;
-  height: 170px;
+  width: 123px;
+  height: 149px;
   border-radius: 50%;
   object-fit: cover;
 }
@@ -296,40 +296,75 @@
   object-fit: cover;
   opacity: 0.9;
 }
-.thinking-process { margin-bottom: 1rem; background: var(--sage-lighter); border-radius: 0.5rem; padding: 0.75rem; font-size: 0.85rem; color: var(--text-secondary); }
-.thinking-process summary { cursor: pointer; font-weight: 500; outline: none; user-select: none; }
-.thinking-content { margin-top: 0.5rem; padding-top: 0.5rem; border-top: 1px solid rgba(0,0,0,0.05); font-style: italic; max-height: 200px; overflow-y: auto; }
+
+.thinking-process {
+  margin-bottom: 1rem;
+  background: var(--sage-lighter);
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.thinking-process summary {
+  cursor: pointer;
+  font-weight: 500;
+  outline: none;
+  user-select: none;
+}
+
+.thinking-content {
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  font-style: italic;
+  max-height: 200px;
+  overflow-y: auto;
+}
 
 /* Markdown Styles */
 .markdown-content {
   line-height: 1.6;
 }
+
 .markdown-content p {
   margin-bottom: 0.75rem;
 }
+
 .markdown-content p:last-child {
   margin-bottom: 0;
 }
-.markdown-content h1, .markdown-content h2, .markdown-content h3, .markdown-content h4, .markdown-content h5, .markdown-content h6 {
+
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3,
+.markdown-content h4,
+.markdown-content h5,
+.markdown-content h6 {
   margin-top: 1.5rem;
   margin-bottom: 0.75rem;
   font-weight: 600;
   line-height: 1.25;
 }
-.markdown-content ul, .markdown-content ol {
+
+.markdown-content ul,
+.markdown-content ol {
   margin-bottom: 1rem;
   padding-left: 1.5rem;
 }
+
 .markdown-content li {
   margin-bottom: 0.25rem;
 }
+
 .markdown-content code {
-  background: rgba(0,0,0,0.05);
+  background: rgba(0, 0, 0, 0.05);
   padding: 0.2em 0.4em;
   border-radius: 0.25rem;
   font-family: monospace;
   font-size: 0.9em;
 }
+
 .markdown-content pre {
   background: var(--card-bg);
   padding: 1rem;
@@ -338,11 +373,13 @@
   margin-bottom: 1rem;
   border: 1px solid var(--card-border);
 }
+
 .markdown-content pre code {
   background: transparent;
   padding: 0;
   border-radius: 0;
 }
+
 .markdown-content blockquote {
   border-left: 4px solid var(--sage-green);
   padding-left: 1rem;
@@ -351,16 +388,19 @@
   color: var(--text-secondary);
   font-style: italic;
 }
+
 .message.user .markdown-content code {
   background: rgba(255, 255, 255, 0.2);
 }
+
 .message.user .markdown-content pre {
-  background: rgba(0,0,0,0.1);
+  background: rgba(0, 0, 0, 0.1);
   border-color: rgba(255, 255, 255, 0.2);
 }
 
 /* Mobile Responsiveness */
-.mobile-menu-btn, .mobile-close-btn {
+.mobile-menu-btn,
+.mobile-close-btn {
   display: none;
 }
 
@@ -389,7 +429,7 @@
 
   .sidebar.open {
     left: 0;
-    box-shadow: 2px 0 10px rgba(0,0,0,0.2);
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
   }
 
   .sidebar-overlay {
@@ -407,7 +447,8 @@
     width: 100%;
   }
 
-  .mobile-menu-btn, .mobile-close-btn {
+  .mobile-menu-btn,
+  .mobile-close-btn {
     display: flex;
   }
 
@@ -419,7 +460,7 @@
     left: 0;
     z-index: 10;
   }
-  
+
   .chat-header {
     padding: 1rem 1.5rem;
   }
@@ -433,14 +474,14 @@
   .chat-input-area {
     padding: 1rem;
   }
-  
+
   .settings-modal {
     width: 90%;
     max-width: 400px;
   }
 
   .empty-state {
-    padding-top: 4rem; /* To clear the absolute header */
+    padding-top: 4rem;
+    /* To clear the absolute header */
   }
 }
-
