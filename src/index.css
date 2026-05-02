@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&display=swap');
 
 :root {
-  --font-family: 'Inter', sans-serif;
+  --font-family: 'Nunito', sans-serif;
   --bg-color: #f3f5f4;
   --text-primary: #1e293b;
   --text-secondary: #475569;
