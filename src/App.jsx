@@ -117,7 +117,7 @@ function App() {
       });
 
       const response = await openai.chat.completions.create({
-        model: 'dgawlik/buddy-gemma-4-finetune-v3', // Or an equivalent model name if using a compatible endpoint
+        model: 'dgawlik/buddy-gemma-4-finetune-v2', // Or an equivalent model name if using a compatible endpoint
         messages: [
           { role: 'system', content: SYSTEM_PROMPT },
           ...updatedMessages.map(m => ({ role: m.role, content: m.content }))
